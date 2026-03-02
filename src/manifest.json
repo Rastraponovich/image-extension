@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Image Cropper",
+  "description": "Crop images from the context menu or by upload. Set aspect ratio, rotate, flip, and export as PNG, JPEG, or WebP.",
+  "version": "1.0.0",
+  "permissions": ["contextMenus", "storage", "downloads", "activeTab"],
+  "background": {
+    "service_worker": "src/background/background.ts"
+  },
+  "action": {
+    "default_popup": "src/popup/index.html"
+  },
+  "host_permissions": ["<all_urls>"]
+}
