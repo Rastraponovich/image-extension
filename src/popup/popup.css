@@ -107,7 +107,7 @@ button:disabled:hover {
 
 select,
 input[type="range"] {
-  padding: 4px;
+  padding: 0.25rem;
   border-radius: 0.25rem;
   border: 1px solid #ccc;
 }
