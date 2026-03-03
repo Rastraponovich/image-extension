@@ -9,5 +9,6 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener((info: chrome.contextMenus.OnClickData) => {
   if (info.menuItemId === "crop-image" && info.srcUrl) {
     chrome.storage.local.set({ targetImage: info.srcUrl });
+    chrome.action.openPopup();
   }
 });
