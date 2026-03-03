@@ -63,8 +63,12 @@ const btnFile = document.getElementById("btnFile")!;
 const tabCrop = document.getElementById("tabCrop")!;
 const tabResize = document.getElementById("tabResize")!;
 const tabButtons = document.querySelectorAll(".tab");
-const resizeModeSize = document.querySelector('input[name="resizeMode"][value="size"]') as HTMLInputElement;
-const resizeModePercent = document.querySelector('input[name="resizeMode"][value="percent"]') as HTMLInputElement;
+const resizeModeSize = document.querySelector(
+  'input[name="resizeMode"][value="size"]'
+) as HTMLInputElement;
+const resizeModePercent = document.querySelector(
+  'input[name="resizeMode"][value="percent"]'
+) as HTMLInputElement;
 const resizeSizeFields = document.getElementById("resizeSizeFields")!;
 const resizePercentField = document.getElementById("resizePercentField")!;
 const resizeWidthInput = document.getElementById("resizeWidth") as HTMLInputElement;
