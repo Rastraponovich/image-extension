@@ -4,11 +4,23 @@
   "description": "Crop images from the context menu or by upload. Set aspect ratio, rotate, flip, and export as PNG, JPEG, or WebP.",
   "version": "1.0.0",
   "permissions": ["contextMenus", "storage", "downloads", "activeTab"],
+  "icons": {
+    "16": "src/icons/icon16.png",
+    "32": "src/icons/icon32.png",
+    "48": "src/icons/icon48.png",
+    "128": "src/icons/icon128.png",
+    "512": "src/icons/icon512.png"
+  },
   "background": {
     "service_worker": "src/background/background.ts"
   },
   "action": {
-    "default_popup": "src/popup/index.html"
+    "default_popup": "src/popup/index.html",
+    "default_icon": {
+      "16": "src/icons/icon16.png",
+      "32": "src/icons/icon32.png",
+      "48": "src/icons/icon48.png"
+    }
   },
   "host_permissions": ["<all_urls>"]
 }
