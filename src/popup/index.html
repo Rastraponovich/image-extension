@@ -5,6 +5,13 @@
     <link rel="stylesheet" href="./popup.css" />
   </head>
   <body>
+    <div class="tabs">
+      <button type="button" class="tab active" data-tab="crop">Обрезка</button>
+      <button type="button" class="tab" data-tab="resize">Размер</button>
+      <button type="button" class="tab" data-tab="batch">Пакетная</button>
+    </div>
+
+    <div id="tabCrop" class="tab-panel active">
     <div class="toolbar">
       <input type="file" id="fileInput" accept="image/*" style="display: none" />
       <button type="button" id="btnFile" title="Загрузить файл">📁</button>
@@ -50,7 +57,85 @@
     <div style="margin-top: 15px; display: flex; gap: 8px">
       <button type="button" id="saveBtn" class="btn-primary">СКАЧАТЬ РЕЗУЛЬТАТ</button>
     </div>
+    </div>
 
+    <div id="tabResize" class="tab-panel">
+      <div class="resize-panel">
+        <div class="resize-toolbar">
+          <input type="file" id="resizeFileInput" accept="image/*" style="display: none" />
+          <button type="button" id="resizeBtnFile" title="Загрузить файл">📁 Загрузить файл</button>
+          <span id="resizeFileInfo" class="resize-file-info">Файл не выбран</span>
+        </div>
+        <img id="resizeImage" alt="" style="display: none" />
+        <div class="resize-mode">
+          <label class="radio-label">
+            <input type="radio" name="resizeMode" value="size" checked />
+            По размеру (ширина × высота)
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="resizeMode" value="percent" />
+            По процентам
+          </label>
+        </div>
+        <div id="resizeSizeFields" class="resize-fields">
+          <label>
+            Ширина: <input type="number" id="resizeWidth" min="1" placeholder="px" />
+          </label>
+          <label>
+            Высота: <input type="number" id="resizeHeight" min="1" placeholder="px" />
+          </label>
+        </div>
+        <div id="resizePercentField" class="resize-fields" style="display: none">
+          <label>
+            Процент: <input type="number" id="resizePercent" min="1" max="1000" value="100" /> %
+          </label>
+        </div>
+        <div id="resizeOutputPreview" class="resize-output">На выходе: — × — px</div>
+        <div class="resize-quality-row">
+          <label>Качество (JPEG/WebP): <input type="range" id="resizeQuality" min="0.5" max="1" step="0.05" value="0.82" /> <span id="resizeQualityVal">82%</span></label>
+        </div>
+        <button type="button" id="resizeApplyBtn" class="btn-primary">Применить</button>
+      </div>
+    </div>
+
+    <div id="tabBatch" class="tab-panel">
+      <div class="batch-panel">
+        <div class="batch-toolbar">
+          <input type="file" id="batchFileInput" accept="image/*" multiple style="display: none" />
+          <button type="button" id="batchBtnAdd" class="btn-primary">➕ Добавить файлы</button>
+          <span id="batchCount" class="batch-count">0 файлов</span>
+          <label class="batch-quality-label">Качество: <input type="range" id="batchQuality" min="0.5" max="1" step="0.05" value="0.82" /> <span id="batchQualityVal">82%</span></label>
+        </div>
+        <div id="batchList" class="batch-list"></div>
+        <div class="batch-actions">
+          <button type="button" id="batchProcessBtn" class="btn-primary" disabled>Обработать и скачать все</button>
+        </div>
+      </div>
+    </div>
+
+    <template id="batchItemTemplate">
+      <div class="batch-item" data-id="">
+        <div class="batch-item-preview">
+          <img alt="" class="batch-item-thumb" />
+          <span class="batch-item-name"></span>
+        </div>
+        <div class="batch-item-params">
+          <select class="batch-item-mode">
+            <option value="size">По размеру</option>
+            <option value="percent">По %</option>
+          </select>
+          <span class="batch-item-size-fields">
+            <label>Ш: <input type="number" class="batch-item-width" min="1" /></label>
+            <label>В: <input type="number" class="batch-item-height" min="1" /></label>
+          </span>
+          <span class="batch-item-percent-field" style="display: none">
+            <label>%: <input type="number" class="batch-item-percent" min="1" max="1000" value="100" /></label>
+          </span>
+          <span class="batch-item-out"></span>
+        </div>
+        <button type="button" class="batch-item-remove" title="Удалить">✕</button>
+      </div>
+    </template>
     <script type="module" src="./main.ts"></script>
   </body>
 </html>
